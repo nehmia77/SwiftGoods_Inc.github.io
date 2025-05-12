@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order - SwiftGoods Inc.</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the same CSS file -->
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">SwiftGoods Inc.</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-icon"></span> 
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="catalogue.html">Catalogue</a></li>
+                <li><a href="order.html" class="active">Order</a></li> <!-- Set Order as active -->
+                <li><a href="procurement.html">Procurement</a></li>
+                <li><a href="admin.html">Admin</a></li> <!-- Optional page link -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-title-section">
+            <div class="container">
+                <h1>Complete Your Order</h1>
+                <p>Select your products and provide delivery details below.</p>
+            </div>
+        </section>
+
+        <section class="order-page-section container">
+            <form id="order-form" action="order_confirmation.html" method="GET"> <!-- Simple GET for demo, POST in real app -->
+                <div class="order-layout">
+                    <!-- Shipping Details Column -->
+                    <div class="form-column shipping-details">
+                        <h2>Shipping Information</h2>
+
+                        <div class="form-group">
+                            <label for="customer-name">Full Name</label>
+                            <input type="text" id="customer-name" name="customer_name" required>
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer-email">Email Address</label>
+                            <input type="email" id="customer-email" name="customer_email" required>
+                             <div class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer-phone">Phone Number</label>
+                            <input type="tel" id="customer-phone" name="customer_phone">
+                             <div class="error-message"></div> <!-- Optional validation -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shipping-address">Shipping Address</label>
+                            <textarea id="shipping-address" name="shipping_address" rows="4" required></textarea>
+                             <div class="error-message"></div>
+                        </div>
+                         <div class="form-group">
+                            <label for="shipping-city">City</label>
+                            <input type="text" id="shipping-city" name="shipping_city" required>
+                             <div class="error-message"></div>
+                        </div>
+                         <div class="form-group">
+                            <label for="shipping-zip">ZIP Code</label>
+                            <input type="text" id="shipping-zip" name="shipping_zip" required pattern="\d{5}(-\d{4})?" title="Enter a 5-digit ZIP code (e.g., 12345)">
+                             <div class="error-message"></div>
+                        </div>
+                    </div>
+
+                    <!-- Product Selection & Summary Column -->
+                    <div class="form-column order-details">
+                        <h2>Select Products</h2>
+                        <div id="product-selection">
+                            <!-- Sample Products - In real app, this could be populated dynamically -->
+                            <div class="order-product-item" data-product-id="prod001" data-price="2.99">
+                                <span class="product-name">Fresh Apples (Kg)</span>
+                                <span class="product-price">$2.99 / kg</span>
+                                <div class="quantity-control">
+                                    <label for="qty-prod001">Qty:</label>
+                                    <input type="number" id="qty-prod001" name="qty_prod001" class="product-quantity" value="0" min="0" step="1">
+                                </div>
+                            </div>
+                            <div class="order-product-item" data-product-id="prod002" data-price="1.50">
+                                <span class="product-name">Fresh Milk (1L)</span>
+                                <span class="product-price">$1.50</span>
+                                 <div class="quantity-control">
+                                    <label for="qty-prod002">Qty:</label>
+                                    <input type="number" id="qty-prod002" name="qty_prod002" class="product-quantity" value="0" min="0" step="1">
+                                </div>
+                            </div>
+                            <div class="order-product-item" data-product-id="prod003" data-price="4.50">
+                                <span class="product-name">Basmati Rice (1kg)</span>
+                                <span class="product-price">$4.50</span>
+                                 <div class="quantity-control">
+                                    <label for="qty-prod003">Qty:</label>
+                                    <input type="number" id="qty-prod003" name="qty_prod003" class="product-quantity" value="0" min="0" step="1">
+                                </div>
+                            </div>
+                             <div class="order-product-item" data-product-id="prod007" data-price="1.80">
+                                <span class="product-name">Potato Chips (150g)</span>
+                                <span class="product-price">$1.80</span>
+                                 <div class="quantity-control">
+                                    <label for="qty-prod007">Qty:</label>
+                                    <input type="number" id="qty-prod007" name="qty_prod007" class="product-quantity" value="0" min="0" step="1">
+                                </div>
+                            </div>
+                            <!-- Add more products as needed -->
+                        </div>
+
+                        <div id="order-summary">
+                            <h2>Order Summary</h2>
+                            <div id="summary-items">
+                                <!-- Items will be added here dynamically by JS -->
+                                <p><em>Select products to see summary...</em></p>
+                            </div>
+                            <div class="summary-totals">
+                                <p>Subtotal: <span id="summary-subtotal">$0.00</span></p>
+                                <p>Tax (approx. 5%): <span id="summary-tax">$0.00</span></p>
+                                <p><strong>Total: <span id="summary-total">$0.00</span></strong></p>
+                            </div>
+                        </div>
+                         <div class="form-actions">
+                             <button type="submit" class="btn btn-primary">Place Order</button>
+                         </div>
+                         <div id="form-submission-error" class="error-message" style="margin-top: 1rem; text-align: center;"></div>
+
+                    </div>
+                </div>
+
+
+            </form>
+        </section>
+    </main>
+
+    <footer> <!-- Reuse the same footer structure -->
+        <div class="container">
+             <div class="footer-content">
+                <div class="contact-info">
+                    <p><strong>SwiftGoods Inc.</strong></p>
+                    <p>123 Market Street, Commerce City, 12345</p>
+                    <p>Email: <a href="mailto:info@swiftgoods.com">info@swiftgoods.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890">(123) 456-7890</a></p>
+                </div>
+                <div class="footer-links">
+                    <p><strong>Quick Links</strong></p>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="social-media">
+                     <p><strong>Follow Us</strong></p>
+                     <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000.png" alt="Facebook Icon"></a>
+                     <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000.png" alt="Twitter Icon"></a>
+                     <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000.png" alt="Instagram Icon"></a>
+                </div>
+            </div>
+            <p class="copyright">© 2024 SwiftGoods Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to the same JS file -->
+</body>
+</html>

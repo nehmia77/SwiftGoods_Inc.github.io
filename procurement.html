@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Management - SwiftGoods Inc.</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the same CSS file -->
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">SwiftGoods Inc.</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-icon"></span> 
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="catalogue.html">Catalogue</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="procurement.html" class="active">Procurement</a></li> <!-- Set Procurement as active -->
+                <li><a href="admin.html">Admin</a></li> <!-- Optional page link -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-title-section">
+            <div class="container">
+                <h1>Procurement & Management</h1>
+                <p>Oversee procurement orders, suppliers, and inventory.</p>
+                 <!-- Basic access control note -->
+                 <p><small><em>(Note: In a real system, this page would require admin login.)</em></small></p>
+            </div>
+        </section>
+
+        <section class="management-section container">
+
+            <!-- Section 1: Procurement Orders Dashboard -->
+            <div class="management-block" id="procurement-orders">
+                <h2>Procurement Orders Dashboard</h2>
+                <div class="controls">
+                    <input type="text" id="search-orders" placeholder="Search orders (Supplier, ID)...">
+                    <select id="filter-order-status">
+                        <option value="all">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table id="procurement-orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Supplier</th>
+                                <th>Date</th>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Order rows will be added by JS -->
+                            <tr><td colspan="7">Loading orders...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2: Add New Procurement Order -->
+            <div class="management-block" id="add-procurement-order">
+                <h2>Add New Procurement Order</h2>
+                <form id="add-order-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-supplier">Supplier</label>
+                            <select id="order-supplier" name="order_supplier" required>
+                                <!-- Supplier options will be added by JS -->
+                                <option value="">Select Supplier</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="order-item">Item</label>
+                            <input type="text" id="order-item" name="order_item" required>
+                             <div class="error-message"></div>
+                        </div>
+                    </div>
+                     <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-quantity">Quantity</label>
+                            <input type="number" id="order-quantity" name="order_quantity" required min="1">
+                            <div class="error-message"></div>
+                        </div>
+                         <div class="form-group">
+                            <label for="order-date">Order Date</label>
+                            <input type="date" id="order-date" name="order_date" required>
+                            <div class="error-message"></div>
+                        </div>
+                     </div>
+                    <div class="form-actions">
+                         <button type="submit" class="btn btn-primary">Add Order</button>
+                    </div>
+                    <div id="add-order-feedback" class="feedback-message"></div>
+                </form>
+            </div>
+
+             <!-- Section 3: Supplier Management -->
+             <div class="management-block" id="supplier-management">
+                <h2>Supplier Management</h2>
+                 <div class="controls">
+                     <input type="text" id="search-suppliers" placeholder="Search suppliers (Name, Product)...">
+                     <button id="add-supplier-btn" class="btn btn-secondary">Add New Supplier</button>
+                 </div>
+                 <div class="table-responsive">
+                     <table id="suppliers-table">
+                        <thead>
+                            <tr>
+                                <th>Supplier Name</th>
+                                <th>Contact Email</th>
+                                <th>Phone</th>
+                                <th>Products Supplied</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             <!-- Supplier rows will be added by JS -->
+                            <tr><td colspan="5">Loading suppliers...</td></tr>
+                        </tbody>
+                    </table>
+                 </div>
+             </div>
+
+             <!-- Section 4: Inventory Tracking (Simplified) -->
+             <div class="management-block" id="inventory-tracking">
+                 <h2>Inventory Overview</h2>
+                 <div class="controls">
+                     <input type="text" id="search-inventory" placeholder="Search inventory items...">
+                 </div>
+                 <div class="table-responsive">
+                     <table id="inventory-table">
+                         <thead>
+                             <tr>
+                                 <th>Item Name</th>
+                                 <th>Current Stock</th>
+                                 <th>Last Updated</th>
+                                 <th>Actions</th> <!-- e.g., Manually Update Stock -->
+                             </tr>
+                         </thead>
+                         <tbody>
+                              <!-- Inventory rows will be added by JS -->
+                             <tr><td colspan="4">Loading inventory...</td></tr>
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+
+        </section>
+
+         <!-- Modal for Editing Supplier (Hidden by default) -->
+        <div id="supplier-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn supplier-modal-close">×</span>
+                <h2 id="supplier-modal-title">Supplier Details</h2>
+                <form id="edit-supplier-form">
+                    <input type="hidden" id="edit-supplier-id"> <!-- To track which supplier is being edited -->
+                    <div class="form-group">
+                        <label for="edit-supplier-name">Supplier Name</label>
+                        <input type="text" id="edit-supplier-name" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-supplier-email">Contact Email</label>
+                        <input type="email" id="edit-supplier-email" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-supplier-phone">Phone</label>
+                        <input type="tel" id="edit-supplier-phone">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-supplier-products">Products Supplied (comma-separated)</label>
+                        <input type="text" id="edit-supplier-products">
+                         <div class="error-message"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Supplier</button>
+                        <button type="button" class="btn btn-secondary supplier-modal-close">Cancel</button>
+                    </div>
+                     <div id="edit-supplier-feedback" class="feedback-message"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal for Updating Stock (Hidden by default) -->
+        <div id="stock-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn stock-modal-close">×</span>
+                <h2 id="stock-modal-title">Update Stock</h2>
+                <form id="update-stock-form">
+                    <input type="hidden" id="update-stock-item-name">
+                    <p>Item: <strong id="stock-item-display-name"></strong></p>
+                    <div class="form-group">
+                        <label for="update-stock-quantity">New Stock Level</label>
+                        <input type="number" id="update-stock-quantity" required min="0">
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Update Stock</button>
+                        <button type="button" class="btn btn-secondary stock-modal-close">Cancel</button>
+                    </div>
+                    <div id="update-stock-feedback" class="feedback-message"></div>
+                </form>
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer> <!-- Reuse the same footer structure -->
+        <div class="container">
+            <div class="footer-content">
+               <div class="contact-info">
+                    <p><strong>SwiftGoods Inc.</strong></p>
+                    <p>123 Market Street, Commerce City, 12345</p>
+                    <p>Email: <a href="mailto:info@swiftgoods.com">info@swiftgoods.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890">(123) 456-7890</a></p>
+                </div>
+                <div class="footer-links">
+                    <p><strong>Quick Links</strong></p>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="social-media">
+                     <p><strong>Follow Us</strong></p>
+                     <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000.png" alt="Facebook Icon"></a>
+                     <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000.png" alt="Twitter Icon"></a>
+                     <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000.png" alt="Instagram Icon"></a>
+                </div>
+            </div>
+            <p class="copyright">© 2024 SwiftGoods Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to the same JS file -->
+</body>
+</html>

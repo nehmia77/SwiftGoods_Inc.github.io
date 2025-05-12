@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SwiftGoods Inc.</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the same CSS file -->
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">SwiftGoods Inc.</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-icon"></span> 
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="catalogue.html">Catalogue</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="procurement.html">Procurement</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li> <!-- Set Admin as active -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Simulated Login Gate -->
+        <section id="admin-login-gate" class="container" style="padding: 3rem 1rem; text-align: center; background-color: #f8f9fa; border-radius: 8px; margin-top: 2rem;">
+             <h2>Admin Access Required</h2>
+             <p>Please enter the admin password to proceed.</p>
+             <div style="margin-top: 1rem;">
+                 <input type="password" id="admin-password" placeholder="Password" style="padding: 0.5rem; margin-right: 0.5rem;">
+                 <button id="login-button" class="btn btn-primary">Login</button>
+             </div>
+             <p id="login-error" class="error-message" style="margin-top: 1rem;"></p>
+             <p><small>(For demo purposes, the password is "admin123")</small></p>
+        </section>
+
+        <!-- Admin Content (Hidden initially) -->
+        <div id="admin-content" style="display: none;">
+            <section class="page-title-section">
+                <div class="container">
+                    <h1>Admin Dashboard</h1>
+                    <p>Overview of key metrics and user management.</p>
+                </div>
+            </section>
+
+            <section class="admin-section container">
+
+                <!-- Section 1: Analytics / Reports -->
+                <div class="management-block" id="admin-analytics">
+                    <h2>Key Metrics & Analytics</h2>
+                    <div class="analytics-grid">
+                        <div class="metric-card">
+                            <h3>Total Procurement Orders</h3>
+                            <p id="metric-total-orders">0</p>
+                        </div>
+                         <div class="metric-card">
+                            <h3>Pending Orders</h3>
+                            <p id="metric-pending-orders">0</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Total Order Value (Approved/Delivered)</h3>
+                            <p id="metric-total-value">$0.00</p>
+                            <small>(Simulated based on quantity)</small>
+                        </div>
+                         <div class="metric-card">
+                            <h3>Orders Delivered (Last 30 Days)</h3>
+                            <p id="metric-delivered-month">0</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Total Suppliers</h3>
+                            <p id="metric-total-suppliers">0</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Inventory Items Tracked</h3>
+                            <p id="metric-inventory-items">0</p>
+                        </div>
+                         <div class="metric-card">
+                            <h3>Low Stock Items (< 50)</h3>
+                            <p id="metric-low-stock">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: User Management (Simulated) -->
+                <div class="management-block" id="admin-user-management">
+                    <h2>User Management</h2>
+                    <div class="controls">
+                         <input type="text" id="search-users" placeholder="Search users (Name, Role)...">
+                         <button id="add-user-btn" class="btn btn-secondary">Add New User</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- User rows will be added by JS -->
+                                <tr><td colspan="5">Loading users...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </div> <!-- End #admin-content -->
+
+         <!-- Modal for Editing/Adding User (Hidden by default) -->
+        <div id="user-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn user-modal-close">×</span>
+                <h2 id="user-modal-title">User Details</h2>
+                <form id="edit-user-form">
+                    <input type="hidden" id="edit-user-id">
+                    <div class="form-group">
+                        <label for="edit-user-name">Full Name</label>
+                        <input type="text" id="edit-user-name" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-user-email">Email</label>
+                        <input type="email" id="edit-user-email" required>
+                        <div class="error-message"></div>
+                    </div>
+                     <div class="form-group">
+                        <label for="edit-user-role">Role</label>
+                        <select id="edit-user-role" required>
+                            <option value="">Select Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="ProcurementManager">Procurement Manager</option>
+                            <option value="Staff">Staff</option>
+                             <option value="Viewer">Viewer</option>
+                        </select>
+                        <div class="error-message"></div>
+                    </div>
+                     <!-- In a real app, password management would be separate and secure -->
+                     <p><small>Password management not included in this simulation.</small></p>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save User</button>
+                        <button type="button" class="btn btn-secondary user-modal-close">Cancel</button>
+                    </div>
+                     <div id="edit-user-feedback" class="feedback-message"></div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <footer> <!-- Reuse the same footer structure -->
+        <div class="container">
+            <div class="footer-content">
+                 <div class="contact-info">
+                    <p><strong>SwiftGoods Inc.</strong></p>
+                    <p>123 Market Street, Commerce City, 12345</p>
+                    <p>Email: <a href="mailto:info@swiftgoods.com">info@swiftgoods.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890">(123) 456-7890</a></p>
+                </div>
+                <div class="footer-links">
+                    <p><strong>Quick Links</strong></p>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="social-media">
+                     <p><strong>Follow Us</strong></p>
+                     <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000.png" alt="Facebook Icon"></a>
+                     <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000.png" alt="Twitter Icon"></a>
+                     <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000.png" alt="Instagram Icon"></a>
+                </div>
+            </div>
+            <p class="copyright">© 2024 SwiftGoods Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to the same JS file -->
+</body>
+</html>

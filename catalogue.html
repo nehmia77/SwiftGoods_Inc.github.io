@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalogue - SwiftGoods Inc.</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the same CSS file -->
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">SwiftGoods Inc.</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-icon"></span> 
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="catalogue.html" class="active">Catalogue</a></li> <!-- Set Catalogue as active -->
+                <li><a href="order.html">Order</a></li>
+                <li><a href="procurement.html">Procurement</a></li>
+                <li><a href="admin.html">Admin</a></li> <!-- Optional page link -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-title-section">
+            <div class="container">
+                <h1>Our Product Catalogue</h1>
+                <p>Browse our wide selection of quality FMCG products.</p>
+            </div>
+        </section>
+
+        <section class="catalogue-section container">
+            <aside class="filters">
+                <h2>Categories</h2>
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="produce">Fresh Produce</button>
+                <button class="filter-btn" data-category="dairy">Dairy Essentials</button>
+                <button class="filter-btn" data-category="pantry">Pantry Staples</button>
+                <button class="filter-btn" data-category="beverages">Beverages</button>
+                <button class="filter-btn" data-category="snacks">Snacks</button>
+                <!-- Add more categories as needed -->
+            </aside>
+
+            <section class="product-list">
+                <!-- Products will be listed here -->
+                <article class="product-item" data-category="produce">
+                    <img src="images/apple.jpg" alt="Fresh Apples">
+                    <h3>Fresh Apples (Kg)</h3>
+                    <p>Crisp and juicy apples sourced locally.</p>
+                    <span class="price">$2.99 / kg</span>
+                     <button class="btn btn-secondary learn-more-btn" data-product-id="prod001">Learn More</button>
+                     <!-- In a real app, Learn More might open a modal or link to a product detail page -->
+                </article>
+
+                <article class="product-item" data-category="dairy">
+                    <img src="images/milk.jpg" alt="Fresh Milk">
+                    <h3>Fresh Milk (1L)</h3>
+                    <p>Pasteurized whole milk, rich in calcium.</p>
+                     <span class="price">$1.50</span>
+                    <button class="btn btn-secondary learn-more-btn" data-product-id="prod002">Learn More</button>
+                </article>
+
+                <article class="product-item" data-category="pantry">
+                    <img src="images/besmatirice.jpg" alt="Basmati Rice">
+                    <h3>Basmati Rice (1kg)</h3>
+                    <p>Premium quality long-grain basmati rice.</p>
+                     <span class="price">$4.50</span>
+                    <button class="btn btn-secondary learn-more-btn" data-product-id="prod003">Learn More</button>
+                </article>
+
+                 <article class="product-item" data-category="beverages">
+                    <img src="images/orangejuice.jpg" alt="Orange Juice">
+                    <h3>Orange Juice (1.5L)</h3>
+                    <p>100% pure squeezed orange juice, no added sugar.</p>
+                     <span class="price">$3.20</span>
+                    <button class="btn btn-secondary learn-more-btn" data-product-id="prod004">Learn More</button>
+                </article>
+
+                 <article class="product-item" data-category="produce">
+                    <img src="images/banana.jpg" alt="Bananas">
+                    <h3>Bananas (Bunch)</h3>
+                    <p>Naturally sweet and energy-rich bananas.</p>
+                     <span class="price">$1.99 / bunch</span>
+                    <button class="btn btn-secondary learn-more-btn" data-product-id="prod005">Learn More</button>
+                </article>
+
+                 <article class="product-item" data-category="dairy">
+                    <img src="images/cheese.jpg" alt="Cheddar Cheese">
+                    <h3>Cheddar Cheese (250g)</h3>
+                    <p>Mature cheddar cheese block, perfect for slicing.</p>
+                    <span class="price">$3.75</span>
+                    <button class="btn btn-secondary learn-more-btn" data-product-id="prod006">Learn More</button>
+                </article>
+
+                <article class="product-item" data-category="snacks">
+                    <img src="images/chips.jpg" alt="Potato Chips">
+                    <h3>Potato Chips (150g)</h3>
+                    <p>Classic salted potato chips, crispy and delicious.</p>
+                    <span class="price">$1.80</span>
+                    <button class="btn btn-secondary learn-more-btn" data-product-id="prod007">Learn More</button>
+                </article>
+
+                <article class="product-item" data-category="pantry">
+                    <img src="images/flour.jpg" alt="All-Purpose Flour">
+                    <h3>All-Purpose Flour (1kg)</h3>
+                    <p>Versatile flour for baking and cooking needs.</p>
+                    <span class="price">$2.10</span>
+                    <button class="btn btn-secondary learn-more-btn" data-product-id="prod008">Learn More</button>
+                </article>
+                <!-- Add more products -->
+
+            </section>
+        </section>
+
+        <!-- Example Modal Structure (Hidden by default) -->
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">×</span>
+                <img id="modal-img" src="" alt="Product Image">
+                <h2 id="modal-title">Product Title</h2>
+                <p id="modal-description">Detailed product description goes here.</p>
+                <span id="modal-price" class="price">Price</span>
+                <!-- Add more details if needed -->
+            </div>
+        </div>
+
+    </main>
+
+    <footer> <!-- Reuse the same footer structure -->
+        <div class="container">
+             <div class="footer-content">
+                <div class="contact-info">
+                    <p><strong>SwiftGoods Inc.</strong></p>
+                    <p>123 Market Street, Commerce City, 12345</p>
+                    <p>Email: <a href="mailto:info@swiftgoods.com">info@swiftgoods.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890">(123) 456-7890</a></p>
+                </div>
+                <div class="footer-links">
+                    <p><strong>Quick Links</strong></p>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="social-media">
+                     <p><strong>Follow Us</strong></p>
+                     <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000.png" alt="Facebook Icon"></a>
+                     <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000.png" alt="Twitter Icon"></a>
+                     <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000.png" alt="Instagram Icon"></a>
+                </div>
+            </div>
+            <p class="copyright">© 2024 SwiftGoods Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to the same JS file -->
+</body>
+</html>
