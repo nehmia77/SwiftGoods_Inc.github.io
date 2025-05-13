@@ -35,7 +35,7 @@
         </section>
 
         <section class="order-page-section container">
-            <form id="order-form" action="order_confirmation.html" method="GET"> <!-- Simple GET for demo, POST in real app -->
+            <form id="order-form" action="payment.html" method="GET"> <!-- Changed action to payment.html -->
                 <div class="order-layout">
                     <!-- Shipping Details Column -->
                     <div class="form-column shipping-details">
@@ -81,7 +81,7 @@
                         <h2>Select Products</h2>
                         <div id="product-selection">
                             <!-- Sample Products - In real app, this could be populated dynamically -->
-                            <div class="order-product-item" data-product-id="prod001" data-price="2.99">
+                            <div class="order-product-item" data-product-id="prod001" data-price="2.99" data-name="Fresh Apples (Kg)">
                                 <span class="product-name">Fresh Apples (Kg)</span>
                                 <span class="product-price">$2.99 / kg</span>
                                 <div class="quantity-control">
@@ -89,7 +89,7 @@
                                     <input type="number" id="qty-prod001" name="qty_prod001" class="product-quantity" value="0" min="0" step="1">
                                 </div>
                             </div>
-                            <div class="order-product-item" data-product-id="prod002" data-price="1.50">
+                            <div class="order-product-item" data-product-id="prod002" data-price="1.50" data-name="Fresh Milk (1L)">
                                 <span class="product-name">Fresh Milk (1L)</span>
                                 <span class="product-price">$1.50</span>
                                  <div class="quantity-control">
@@ -97,7 +97,7 @@
                                     <input type="number" id="qty-prod002" name="qty_prod002" class="product-quantity" value="0" min="0" step="1">
                                 </div>
                             </div>
-                            <div class="order-product-item" data-product-id="prod003" data-price="4.50">
+                            <div class="order-product-item" data-product-id="prod003" data-price="4.50" data-name="Basmati Rice (1kg)">
                                 <span class="product-name">Basmati Rice (1kg)</span>
                                 <span class="product-price">$4.50</span>
                                  <div class="quantity-control">
@@ -105,7 +105,7 @@
                                     <input type="number" id="qty-prod003" name="qty_prod003" class="product-quantity" value="0" min="0" step="1">
                                 </div>
                             </div>
-                             <div class="order-product-item" data-product-id="prod007" data-price="1.80">
+                             <div class="order-product-item" data-product-id="prod007" data-price="1.80" data-name="Potato Chips (150g)">
                                 <span class="product-name">Potato Chips (150g)</span>
                                 <span class="product-price">$1.80</span>
                                  <div class="quantity-control">
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                          <div class="form-actions">
-                             <button type="submit" class="btn btn-primary">Place Order</button>
+                             <button type="submit" class="btn btn-primary">Proceed to Payment</button> <!-- Changed button text -->
                          </div>
                          <div id="form-submission-error" class="error-message" style="margin-top: 1rem; text-align: center;"></div>
 
