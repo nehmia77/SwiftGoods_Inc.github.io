@@ -1315,6 +1315,158 @@ table .update-status-select {
     color: #dc3545;
 }
 
+/* --- Payment Page Styles --- */
+.payment-page-section {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.payment-layout {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.payment-column {
+    flex: 1;
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.payment-column h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+}
+
+/* Order Summary on Payment Page */
+#payment-order-summary-container {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+#payment-order-summary-details {
+    margin-bottom: 1.5rem;
+    max-height: 250px;
+    overflow-y: auto;
+}
+#payment-order-summary-details p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+}
+#payment-order-summary-details span {
+    text-align: right;
+    white-space: nowrap;
+}
+#payment-summary-totals-display { /* Reuses .summary-totals styles */
+    border-top: 1px dashed #ccc;
+    padding-top: 1rem;
+}
+#payment-summary-totals-display p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+#payment-summary-totals-display p strong {
+    font-size: 1.1rem;
+    color: #333;
+}
+#payment-summary-totals-display span {
+    font-weight: bold;
+    text-align: right;
+}
+
+
+/* Payment Options */
+.payment-options {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.payment-option-btn {
+    flex-grow: 1;
+    padding: 1rem 1.5rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    color: #495057;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px; /* Min width for each button */
+}
+.payment-logo {
+    width: 30px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.payment-option-btn:hover {
+    border-color: #007bff;
+    background-color: #e9f4ff;
+    color: #0056b3;
+}
+
+.payment-option-btn.active {
+    border-color: #007bff;
+    background-color: #007bff;
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+.payment-option-btn.active .payment-logo {
+    filter: brightness(0) invert(1); /* Make logo white when button is active */
+}
+
+
+/* Payment Forms */
+.payment-form {
+    background-color: #fdfdff;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.payment-form h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #0056b3;
+    text-align: center;
+}
+
+.payment-form .form-group { /* Reuses .form-group styles */
+    margin-bottom: 1.2rem;
+}
+
+.payment-form .btn-proceed-pay { /* Reuses .btn .btn-primary */
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.05rem;
+    margin-top: 0.5rem;
+}
+
+.payment-feedback.error-message { /* For payment specific errors */
+    display: block; /* ensure it's block to take effect if JS sets textContent */
+    text-align: center;
+}
+
 /* ========================== */
 /* === RESPONSIVE STYLES === */
 /* ========================== */
@@ -1341,6 +1493,9 @@ table .update-status-select {
 
     .order-layout {
         gap: 2rem;
+    }
+    .payment-layout {
+        gap: 1.5rem;
     }
 
     .analytics-grid {
@@ -1606,6 +1761,22 @@ table .update-status-select {
         width: 100%;
      }
 
+    /* Payment Page Responsive Adjustments */
+    .payment-layout {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+    .payment-column {
+        min-width: 100%;
+    }
+    .payment-options {
+        justify-content: center; /* Center payment buttons if they wrap */
+    }
+    .payment-option-btn {
+        font-size: 1rem; /* Slightly smaller on mobile */
+        padding: 0.8rem 1rem;
+    }
+
 }
 
 /* Very Small Screens (Extra adjustments if needed) */
@@ -1664,6 +1835,14 @@ table .update-status-select {
      .metric-card p {
         font-size: 1.6rem; /* Smaller number */
      }
+
+    .payment-option-btn {
+        width: 100%; /* Stack payment option buttons */
+        margin-bottom: 0.5rem;
+    }
+    .payment-options {
+        gap: 0.5rem; /* Reduce gap when stacked */
+    }
 }
 /* Add near the top or with other button styles */
 .nav-toggle {
@@ -1790,15 +1969,5 @@ header nav {
         transform: rotate(-45deg);
         transition: top 0.2s ease-in-out, transform 0.2s 0.2s ease-in-out;
     }
-
-    /* Remove previous mobile stacking for nav */
-    /* header nav { */
-        /* flex-direction: row; /* Keep row layout for logo and button */
-        /* align-items: center; */
-    /* } */
-    /* .logo { */
-        /* margin-bottom: 0; */
-    /* } */
-
 }
 /* ================================ */
