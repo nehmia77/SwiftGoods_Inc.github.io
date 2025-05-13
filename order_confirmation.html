@@ -37,13 +37,13 @@
         <section class="confirmation-details container">
             <h2>Your Order Details</h2>
             <p>Your order has been successfully placed. We've sent a confirmation email with the details to the address provided.</p>
-            <p><strong>Order Summary (Example):</strong></p>
-            <!-- In a real app, you'd pass order details here -->
+            
             <div id="confirmation-summary">
                 <p><em>Details would be shown here based on the submitted order.</em></p>
                 <p>Customer Name: <span id="conf-name">[Name]</span></p>
                 <p>Email: <span id="conf-email">[Email]</span></p>
                 <p>Shipping To: <span id="conf-address">[Address]</span></p>
+                <p id="payment-method-display-p" style="display:none;">Payment Method: <span id="conf-payment-method">[Payment Method]</span></p>
                 <!-- Display items and total if possible using URL params or session storage -->
             </div>
             <p>You can track your order status via the link sent to your email (feature coming soon!).</p>
@@ -70,29 +70,15 @@
                 </div>
                 <div class="social-media">
                      <p><strong>Follow Us</strong></p>
-                     <a href="#" aria-label="Facebook"><img src="images/icon_facebook.png" alt="Facebook Icon"></a>
-                     <a href="#" aria-label="Twitter"><img src="images/icon_twitter.png" alt="Twitter Icon"></a>
-                     <a href="#" aria-label="Instagram"><img src="images/icon_instagram.png" alt="Instagram Icon"></a>
+                     <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000.png" alt="Facebook Icon"></a>
+                     <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000.png" alt="Twitter Icon"></a>
+                     <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000.png" alt="Instagram Icon"></a>
                 </div>
             </div>
             <p class="copyright">© 2024 SwiftGoods Inc. All rights reserved.</p>
         </div>
     </footer>
-    <script>
-        // Basic script to grab details from URL parameters (if using GET)
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const name = params.get('customer_name');
-            const email = params.get('customer_email');
-            const address = params.get('shipping_address'); // Combine address parts if needed
-
-            if (name) document.getElementById('conf-name').textContent = name;
-            if (email) document.getElementById('conf-email').textContent = email;
-            if (address) document.getElementById('conf-address').textContent = address;
-
-            // Could also retrieve quantity params and reconstruct summary, but gets complex quickly.
-            // SessionStorage or sending data via POST and server-side rendering is more robust.
-        });
-    </script>
+    <script src="script.js"></script> <!-- Make sure this line is present -->
+    <!-- The confirmation page logic is now inside script.js runConfirmationPageLogic -->
 </body>
 </html>
