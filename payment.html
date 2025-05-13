@@ -1,0 +1,135 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment - SwiftGoods Inc.</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">SwiftGoods Inc.</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-icon"></span>
+            </button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="catalogue.html">Catalogue</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="procurement.html">Procurement</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-title-section">
+            <div class="container">
+                <h1>Payment Details</h1>
+                <p>Please select your payment method and provide the necessary information.</p>
+            </div>
+        </section>
+
+        <section class="payment-page-section container">
+            <div class="payment-layout">
+                <!-- Order Summary Column -->
+                <div class="payment-column" id="payment-order-summary-container">
+                    <h2>Order Summary</h2>
+                    <div id="payment-order-summary-details">
+                        <!-- Summary details will be populated by JS -->
+                        <p><em>Loading order details...</em></p>
+                    </div>
+                    <div class="summary-totals" id="payment-summary-totals-display">
+                        <p>Subtotal: <span id="payment-summary-subtotal">$0.00</span></p>
+                        <p>Tax (approx. 5%): <span id="payment-summary-tax">$0.00</span></p>
+                        <p><strong>Total: <span id="payment-summary-total">$0.00</span></strong></p>
+                    </div>
+                </div>
+
+                <!-- Payment Options & Form Column -->
+                <div class="payment-column" id="payment-method-selection-container">
+                    <h2>Choose Payment Method</h2>
+                    <div class="payment-options">
+                        <button class="payment-option-btn" data-payment-method="telebirr">
+                            <img src="images/telebirr.jpg" alt="Tele Birr" class="payment-logo"> Tele Birr
+                        </button>
+                        <button class="payment-option-btn" data-payment-method="cbebirr">
+                             <img src="images/cbebirr.png" alt="CBE Birr" class="payment-logo"> CBE Birr
+                        </button>
+                    </div>
+
+                    <!-- Tele Birr Form (Hidden by default) -->
+                    <form id="telebirr-form" class="payment-form" style="display: none;">
+                        <h3>Tele Birr Payment</h3>
+                        <div class="form-group">
+                            <label for="telebirr-phone">Phone Number</label>
+                            <input type="tel" id="telebirr-phone" name="telebirr_phone" required placeholder="e.g., 0912345678">
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="telebirr-name">Full Name</label>
+                            <input type="text" id="telebirr-name" name="telebirr_name" required placeholder="As registered with Tele Birr">
+                            <div class="error-message"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-proceed-pay">Proceed with Tele Birr</button>
+                        <div class="payment-feedback error-message" style="margin-top: 1rem;"></div>
+                    </form>
+
+                    <!-- CBE Birr Form (Hidden by default) -->
+                    <form id="cbebirr-form" class="payment-form" style="display: none;">
+                        <h3>CBE Birr Payment</h3>
+                        <div class="form-group">
+                            <label for="cbebirr-phone">Phone Number</label>
+                            <input type="tel" id="cbebirr-phone" name="cbebirr_phone" required placeholder="e.g., 0912345678">
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cbebirr-name">Full Name</label>
+                            <input type="text" id="cbebirr-name" name="cbebirr_name" required placeholder="Account Holder Name">
+                            <div class="error-message"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-proceed-pay">Proceed with CBE Birr</button>
+                        <div class="payment-feedback error-message" style="margin-top: 1rem;"></div>
+                    </form>
+                     <p id="payment-default-instruction" style="margin-top:1.5rem; text-align:center;">Please select a payment method above to continue.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+             <div class="footer-content">
+                <div class="contact-info">
+                    <p><strong>SwiftGoods Inc.</strong></p>
+                    <p>123 Market Street, Commerce City, 12345</p>
+                    <p>Email: <a href="mailto:info@swiftgoods.com">info@swiftgoods.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890">(123) 456-7890</a></p>
+                </div>
+                <div class="footer-links">
+                    <p><strong>Quick Links</strong></p>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="social-media">
+                     <p><strong>Follow Us</strong></p>
+                     <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000.png" alt="Facebook Icon"></a>
+                     <a href="#" aria-label="Twitter"><img src="https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000.png" alt="Twitter Icon"></a>
+                     <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000.png" alt="Instagram Icon"></a>
+                </div>
+            </div>
+            <p class="copyright">© 2024 SwiftGoods Inc. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
